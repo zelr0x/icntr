@@ -1,15 +1,24 @@
 # icntr - Integer-Based Distinct Count Problem Solver
 *icntr* is a distinct occurrence counter for anything that can be turned into an unsigned integer
 
-## Examples
+## IPv4 Counter Example
 This repository contains an example for finding unique IPv4 addresses in a large file.
 
-It takes roughly 35 minutes to find all unique addresses within a 120GB file (8 billion lines) on my 4-core ryzen-3 3200G.
+It takes 25-35 minutes to find all unique addresses within a 120GB file (8 billion lines) on my 4-core ryzen-3 3200G.
 And that is with some input validation and a lot of live progress tracking.
+
+Memory consumption depends heavily on the number of workers and the chunk size.
+Chunk size is a portion of the file (in lines) read into memory by each worker.
+
+## IPv4 Counter CLI
+The syntax is:
 ```shell
 icntr FILE [number-of-workers:4] [chunk-size:100000]
 ```
-i.e.
+Gradle example:
 ```shell
-icntr ./ip_addresses 4 100000
+# *nix
+gradlew run --args='./ip_addresses 4 100000'
+# Windows
+gradlew run --args="ip_addresses 4 100000"
 ```

@@ -4,8 +4,8 @@
 ## IPv4 Counter Example
 This repository contains an example for finding unique IPv4 addresses in a large file.
 
-It takes 25-35 minutes to find all unique addresses within a 120GB file (8 billion lines) on my 4-core ryzen-3 3200G.
-And that is with some input validation and a lot of live progress tracking.
+It takes 25-35 minutes to find 1 billion unique addresses within a 120GB (8 billion lines, one address per line) file on a 4-core ryzen-3 3200G,
+with enabled input validation and live progress tracking.
 
 Memory consumption depends heavily on the number of workers and the chunk size.
 Chunk size is a portion of the file (in lines) read into memory by each worker.

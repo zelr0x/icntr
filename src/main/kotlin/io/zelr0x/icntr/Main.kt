@@ -96,9 +96,14 @@ fun now(): String {
 fun awaitShutdown(executor: ExecutorService) {
     executor.shutdown()
     try {
-        executor.awaitTermination(10, TimeUnit.SECONDS)
+        if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
+            println("[${now()}] Shutting down executor forcefully")
+            executor.shutdownNow()
+        }
     } catch (e: InterruptedException) {
-        e.printStackTrace()
+        println("[${now()}] Shutdown interrupted. Forcing shutdown...")
+        executor.shutdownNow()
+        Thread.currentThread().interrupt()
     }
 }
 
